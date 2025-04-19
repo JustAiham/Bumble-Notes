@@ -1,0 +1,20 @@
+<div class="notes-container">
+    <h2>Hello world</h2>
+    <% if(locals.notes){%>
+        <% notes.forEach(note => { %>
+      <div class="note-card">
+        <h3><%= note.title %></h3>
+        <p><%= note.content %></p>
+      </div>
+    <% }) %>
+    <%} else{%>
+      <div class="note-card empty-note">
+        <h3>No notes available</h3>
+        <p>Click the button below to create a new note.</p>
+      </div><%}%>
+  
+    <div class="note-card new-note">
+      <button onclick="openNewNoteModal()">+ New Note</button>
+    </div>
+  </div>
+  
