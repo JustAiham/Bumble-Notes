@@ -34,3 +34,11 @@ body {
     z-index: -1;
   }
   
+  .New-Note{
+    position: fixed;
+    bottom: 20px;
+    right: 5%;
+    width: 52px;  /* adjust as needed */
+    height: 52px; /* adjust as needed */
+  }
+  
