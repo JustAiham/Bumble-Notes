@@ -3,6 +3,18 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="background-overlay"></div>
 <form action="/save" method="POST">
+   <% if(locals.note){%>
+     <header class="new-note-header">
+      <img src="/images/logos/goBack.png" alt="Back" class="back-button icon" onclick="window.location.href='/'">
+      
+      <input type="text" id="title" name="title" required placeholder="Note title..." value="<%= locals.note.title %>">
+      
+      <button id="save" type="submit">Save</button>
+      <button id="cancel" type="button" onclick="window.location.href='/'">Cancel</button>
+    </header>
+  
+    <textarea id="content" name="content" rows="10" required placeholder="Write your note..." value="<%=locals.note.content%>"></textarea>
+  <%} else{%>
     <header class="new-note-header">
       <img src="/images/logos/goBack.png" alt="Back" class="back-button icon" onclick="window.location.href='/'">
       
@@ -11,7 +23,8 @@
       <button id="save" type="submit">Save</button>
       <button id="cancel" type="button" onclick="window.location.href='/'">Cancel</button>
     </header>
-  
     <textarea id="content" name="content" rows="10" required placeholder="Write your note..."></textarea>
-  </form>
+
+  <%}%>
+    </form>
   

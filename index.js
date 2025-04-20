@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import fs from 'fs';
+import generateUniqueId from 'generate-unique-id';
 
 
 const app = express();
@@ -36,7 +37,12 @@ app.get('/cancel', (req, res) => {
 app.post('/save', (req, res) => {
     const newNote = {
       title: req.body.title,
-      content: req.body.content
+      content: req.body.content,
+      id: generateUniqueId({
+        length: 32,
+        useLetters: true,
+        useNumbers: true
+      })
     };
   
     // Load existing notes
@@ -56,7 +62,18 @@ app.post('/save', (req, res) => {
   
     res.redirect('/'); // or wherever you want to go after saving
   });
-  
+
+app.get('/clickedCard/id', (req, res) => {
+    const noteId = req.params.id;
+    const notes = JSON.parse(fs.readFileSync('notes.json', 'utf-8'));
+    const note = notes.find(n => n.id === noteId);
+
+    if (!note) return res.status(404).send('Note not found');
+
+    res.render('/createNote', { note });
+  });
+
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
