@@ -1,5 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import fs from 'fs';
+
 
 const app = express();
 const PORT = 3000;
@@ -13,9 +15,48 @@ app.use(express.static('public'));
 
 // Routes
 app.get('/', (req, res) => {
-    res.render('index', {note: 'Home' });
+    let notes = [];
+    try {
+        notes = JSON.parse(fs.readFileSync('notes.json', 'utf-8'));
+    } catch (err) {
+        notes = []; // fallback if file missing or broken
+    }
+    res.render('index', {notes});
 });
 
+
+app.get('/createNote', (req, res) => {
+    res.render('createNote');
+});
+app.get('/cancel', (req, res) => {
+    res.render('index');
+});
+
+
+app.post('/save', (req, res) => {
+    const newNote = {
+      title: req.body.title,
+      content: req.body.content
+    };
+  
+    // Load existing notes
+    let notes = [];
+    try {
+      notes = JSON.parse(fs.readFileSync('notes.json', 'utf-8'));
+    } catch (err) {
+      // If file doesn't exist or is empty, start fresh
+      notes = [];
+    }
+  
+    // Add the new note
+    notes.push(newNote);
+  
+    // Save back to the file
+    fs.writeFileSync('notes.json', JSON.stringify(notes, null, 2));
+  
+    res.redirect('/'); // or wherever you want to go after saving
+  });
+  
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

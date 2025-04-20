@@ -6,24 +6,19 @@
     <h2>Bumble Notes</h2>
 </div>
 <div class="notes-container">
-    <% if(locals.notes){%>
-        <% notes.forEach(note => { %>
+  <% if (notes.length > 0) { %>
+    <% notes.forEach(note => { %>
       <div class="note-card">
         <h3><%= note.title %></h3>
         <p><%= note.content %></p>
       </div>
     <% }) %>
-    <%} else{%>
-      <div class="'testNote">
-        <div class="note-card empty-note">
-            <h3>No notes available</h3>
-            <p>Click the button below to create a new note.</p>
-          </div>
-      </div>
-      </div>
-      <div class="note-card new-note">
-        <img src="/images/logos/edit.png" alt="Edit Icon" class="new" onclick="window.location.href='/createNote'">
-      </div>
-      <%}%>
+  <% } else { %>
+    <div class="note-card empty-note">
+      <h3>No notes available</h3>
+      <p>Click the button below to create a new note.</p>
+    </div>
+  <% } %>     
+        <img src="/images/logos/edit.png" alt="Edit Icon" class="new-note-edit" onclick="window.location.href='/createNote'">
   </div>
   

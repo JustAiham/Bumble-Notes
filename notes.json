@@ -1,0 +1,22 @@
+[
+  {
+    "title": "4/19/2025",
+    "content": "I created a notes app and named it Bumble Notes!"
+  },
+  {
+    "title": "How I feel",
+    "content": "I feel happy today because it is very peaceful."
+  },
+  {
+    "title": "My plan next",
+    "content": "I will move on to learn about creating my own API."
+  },
+  {
+    "title": "Databases",
+    "content": "This projects uses JSON to store notes, but I will upgrade to databases in the near future."
+  },
+  {
+    "title": "Question for myself",
+    "content": "Was it worth it?"
+  }
+]
