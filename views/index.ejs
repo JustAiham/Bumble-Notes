@@ -1,5 +1,11 @@
+<link rel="stylesheet" href="/styles/styles.css">
+<script src="/index.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="background-overlay"></div>
+<div class="notes-header">
+    <h2>Bumble Notes</h2>
+</div>
 <div class="notes-container">
-    <h2>Hello world</h2>
     <% if(locals.notes){%>
         <% notes.forEach(note => { %>
       <div class="note-card">
@@ -8,13 +14,56 @@
       </div>
     <% }) %>
     <%} else{%>
-      <div class="note-card empty-note">
-        <h3>No notes available</h3>
-        <p>Click the button below to create a new note.</p>
-      </div><%}%>
-  
-    <div class="note-card new-note">
-      <button onclick="openNewNoteModal()">+ New Note</button>
-    </div>
+      <div class="'testNote">
+        <div class="note-card empty-note">
+            <h3>No notes available</h3>
+            <p>Click the button below to create a new note.</p>
+          </div>
+      
+        <div class="note-card new-note">
+          <button onclick="openNewNoteModal()">+ New Note</button>
+        </div>
+      </div>
+      <div class="'testNote">
+        <div class="note-card empty-note">
+            <h3>No notes available</h3>
+            <p>Click the button below to create a new note.</p>
+          </div>
+      
+        <div class="note-card new-note">
+          <button onclick="openNewNoteModal()">+ New Note</button>
+        </div>
+      </div>
+      <div class="'testNote">
+        <div class="note-card empty-note">
+            <h3>No notes available</h3>
+            <p>Click the button below to create a new note.</p>
+          </div>
+      
+        <div class="note-card new-note">
+          <button onclick="openNewNoteModal()">+ New Note</button>
+        </div>
+      </div>
+      <div class="'testNote">
+        <div class="note-card empty-note">
+            <h3>No notes available</h3>
+            <p>Click the button below to create a new note.</p>
+          </div>
+      
+        <div class="note-card new-note">
+          <button onclick="openNewNoteModal()">+ New Note</button>
+        </div>
+      </div>
+      <div class="'testNote">
+        <div class="note-card empty-note">
+            <h3>No notes available</h3>
+            <p>Click the button below to create a new note.</p>
+          </div>
+      
+        <div class="note-card new-note">
+          <button onclick="openNewNoteModal()">+ New Note</button>
+        </div>
+      </div>
+      <%}%>
   </div>
   
