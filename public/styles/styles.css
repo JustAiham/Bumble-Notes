@@ -56,6 +56,20 @@ body {
     font-size: 20px;
     margin: 0;
   }
+  .new-note-header input[type="text"]:focus {
+    outline: none;
+    border: 2px solid #FEBA17; /* Change to your desired color */
+    border-radius: 5px;
+  }
+.delete-note-form{
+    margin: 5px;
+ 
+}
+.edit-Note-Form{
+    display: grid;
+    grid-template-columns: 90% 10%;
+  }
+
 
   /* some animation for note cards */
   /* From Uiverse.io by eslam-hany */ 

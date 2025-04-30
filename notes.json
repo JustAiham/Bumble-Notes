@@ -3,5 +3,10 @@
     "title": "My first note",
     "content": "Hello, this is my first backend app. I use nodejs, javascript, css, ejs, and expressjs.",
     "id": "37m2uv2qru26ooyo7va89za15oqejh1m"
+  },
+  {
+    "title": "2nd Note",
+    "content": "Hey, this is my second note!",
+    "id": "2k8izevj8quwudm2z9lh0irh45xh6anm"
   }
 ]

@@ -5,14 +5,12 @@
 <div class="notes-header">
     <h2>Bumble Notes</h2>
 </div>
-<div class="notes-container" method="GET" action="/clickedCard">
+<div class="notes-container">
   <% if (notes.length > 0) { %>
     <% notes.forEach(note => { %>
-      <div class="card note-card">
-        <a href="/clickedCard/<%= note.id %>" class="card note-card clickable-note">
-          <h3><%= note.title %></h3>
+      <div class="card note-card" onclick="window.location.href='/clickedCard/<%= note.id %>'">
+        <h3><%= note.title %></h3>
         <!-- <p><%= note.content %></p> -->
-        </a>
       </div>
     <% }) %>
   <% } else { %>
