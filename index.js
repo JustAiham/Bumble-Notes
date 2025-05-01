@@ -127,7 +127,9 @@ app.post('/saveEditedNote', (req, res) => {
     res.redirect('/'); // Redirect to the main page
     };
 });
-  
+app.get('/credits', (req, res) => {
+  res.render('credits');
+});
 
 
 
