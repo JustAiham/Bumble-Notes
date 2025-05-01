@@ -1,123 +1,207 @@
+/* main page */
 body {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    color: black;
-    background-color: #F8F4E1;
-    display: block;
-}
-.notes-container {
-    display: grid;
-    grid-template-areas: 
-    "testNote testNote testNote testNote";
-    gap: 20px;
-    padding: 20px;
-    max-width: 100vw;
-    max-height: 100vh;
-    margin: 0 auto;
-    background-color: #FEBA17; /* Semi-transparent white */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-  
-.background-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("/images/flowerswallpaper.jpg"); 
-    /* url("/images/pattern_background_image2.png"); */
-    background-size: cover;
-    background-position: center;
-    opacity: 0.85; /* Adjust as needed */
-    z-index: -1;
-  }
-  /* button to create new note */
-  .New-note-edit{
-    position: fixed;
-    bottom: 20px;
-    right: 5%;
-
-  }
-  .New-note-edit:hover{
-    width: 42px;  /* adjust as needed */
-    height: 42px; /* adjust as needed */
-  }
-
-  /* new note page  */
-  .new-note-header{
-    display: flex;
-    align-items: center;
-    gap: 10px;  
-}
-  .new-note-header input[type="text"] {
-    flex:2;
-    font-size: 20px;
-    margin: 0;
-  }
-  .new-note-header input[type="text"]:focus {
-    outline: none;
-    border: 2px solid #FEBA17; /* Change to your desired color */
-    border-radius: 5px;
-  }
-.delete-note-form{
-    margin: 5px;
- 
-}
-.edit-Note-Form{
-    display: grid;
-    grid-template-columns: 90% 10%;
-  }
-
-
-  /* some animation for note cards */
-  /* From Uiverse.io by eslam-hany */ 
-.card {
   position: relative;
-  background: mediumturquoise;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 15px;
-  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  color: black;
+  background-color: #FEBA17;
+  display: block;
 }
 
-.card::before,
-.card::after {
-  position: absolute;
-  content: "";
-  width: 20%;
-  height: 20%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 25px;
-  font-weight: bold;
-  background-color: lightblue;
-  transition: all 0.5s;
+.notes-container {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+gap: 20px;
+padding: 20px;
+background-color: #FEBA17;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card::before {
+.background-overlay {
+  position: fixed;
   top: 0;
-  right: 0;
-  border-radius: 0 15px 0 100%;
-}
-
-.card::after {
-  bottom: 0;
   left: 0;
-  border-radius: 0 100%  0 15px;
-}
-
-.card:hover::before,
-.card:hover:after {
   width: 100%;
   height: 100%;
-  border-radius: 15px;
-  transition: all 0.5s;
+  background-image: url("/images/flowerswallpaper.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.85;
+  z-index: -1;
 }
 
-.card:hover:after {
-  content: "Click to read";
+/* Floating button to create new note */
+.New-note-edit {
+  position: fixed;
+  bottom: 20px;
+  right: 5%;
+}
+.New-note-edit:hover {
+  width: 42px;
+  height: 42px;
+}
+
+/* new note page */
+
+
+
+#content {
+  margin-top: 60px; /* same as .new-note-header height */
+}
+
+/* NEW: Top bar layout for new/edit note pages */
+.top-bar {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  background-color: #F8F4E1;
+  padding: 0 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.top-bar input[type="text"] {
+  flex: 1;
+  font-size: 20px;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #515151;
+  background: transparent;
+}
+
+.top-bar input[type="text"]:focus {
+  border: 2px solid #F8F4E1;
+  background-color: #F8F4E1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Clean buttons */
+/* From Uiverse.io by Jedi-hongbin */ 
+button {
+  display: flex;
+  height: 3em;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee4b;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: #F8F4E1;
+  
+ }
+ 
+ button > svg {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: all 0.4s ease-in;
+ }
+ 
+ button:hover > svg {
+  font-size: 1.2em;
+  transform: translateX(-5px);
+ }
+ 
+ button:hover {
+  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
+  transform: translateY(-2px);
+ }
+
+.delete-note-form {
+margin: 5px;
+}
+
+/* Removed: .edit-Note-Form */
+
+#content {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 60px);
+  width: 100vw;
+  border: none;
+  resize: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  box-sizing: border-box;
+  
+  font-family: cursive;
+  font-size: 20px;
+  line-height: 2rem; /* Adjusted line-height for better text alignment */
+  
+  padding: 1.4rem 0.5rem 0.3rem 4.5rem;
+  background: #fff;
+  background-image: linear-gradient(#f5f5f0 1.5rem, #ccc 1.6rem); /* Increased background line size */
+  background-size: 100% 1.6rem; /* Adjusted background size to match new line height */
+  border-radius: 0;
+  outline: none;
+  
+}
+
+/* Card design & animation */
+.card {
+--border-radius: 0.75rem;
+--primary-color: #7257fa;
+--secondary-color: #3c3852;
+width: 200px;
+font-family: "Arial";
+padding: 1rem;
+cursor: pointer;
+border-radius: var(--border-radius);
+background: #f1f1f3;
+box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 3%);
+position: relative;
+}
+.card > * + * {
+margin-top: 1.1em;
+max-height: 50px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+transition: 0.2s;
+}
+.card .card__content {
+color: var(--secondary-color);
+font-size: 0.86rem;
+}
+.card .card__title {
+padding: 0;
+font-size: 1.3rem;
+font-weight: bold;
+}
+.card .card__date {
+color: #6e6b80;
+font-size: 0.8rem;
+}
+.card .card__arrow {
+position: absolute;
+background: var(--primary-color);
+padding: 0.4rem;
+border-top-left-radius: var(--border-radius);
+border-bottom-right-radius: var(--border-radius);
+bottom: 0;
+right: 0;
+transition: 0.2s;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.card svg {
+transition: 0.2s;
+}
+.card:hover .card__title {
+color: var(--primary-color);
+text-decoration: underline;
+}
+.card:hover .card__arrow {
+background: #111;
+}
+.card:hover .card__arrow svg {
+transform: translateX(3px);
 }

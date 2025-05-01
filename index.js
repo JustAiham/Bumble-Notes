@@ -13,6 +13,11 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
+function todayDate() {
+  const date = new Date();
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString(undefined, options);
+}
 // Routes
 app.get('/', (req, res) => {
   let notes = [];
@@ -36,11 +41,12 @@ app.post('/save', (req, res) => {
   const newNote = {
     title: req.body.title,
     content: req.body.content,
+    date: todayDate(),
     id: generateUniqueId({
       length: 32,
       useLetters: true,
       useNumbers: true,
-    }),
+    })
   };
 
   // Load existing notes
@@ -70,84 +76,58 @@ app.get('/clickedCard/:id', (req, res) => {
     return res.status(404).send('Note not found');
   }
 
-  console.log('Note found:', note); // Check entire object
-  console.log('Note ID:', note.id);
-
+  // console.log('Note found:', note); // Check entire object
   res.render('createNote', { note });
 });
 
-// app.post('saveEditedNote', (req, res) => {
-//   console.log(req.body); // To check the form data coming in
-//   const updatedNote = {
-//     title: req.body.title,
-//     content: req.body.content,
-//     id: req.body.id, // Use the ID from the form
-//   };
-  
-//     // Load existing notes
-//     let notes = [];
-//     try {
-//       notes = JSON.parse(fs.readFileSync('notes.json', 'utf-8'));
-//     } catch (err) {
-//       notes = []; // fallback if file missing or broken
-//     }
-  
-//     // Find and update the note
-//     const noteIndex = notes.findIndex((n) => n.id === updatedNote.id);
-//     if (noteIndex !== -1) {
-//       notes[noteIndex] = updatedNote; // Update the note in the array
-//       fs.writeFileSync('notes.json', JSON.stringify(notes, null, 2)); // Save back to the file
-//     }
-  
-//     res.redirect('/'); // Redirect after saving
-// });
-
 app.post('/saveEditedNote', (req, res) => {
-  const updatedNote = {
-    title: req.body.title,
-    content: req.body.content,
-    id: req.body.id, // You can now access the ID
-  };
+  const { id, title, content,date, action } = req.body;
+
+  if(action ==='save'){
+    const updatedNote = {
+      title: req.body.title,
+      content: req.body.content,
+      id: req.body.id,
+      date: req.body.date // You can now access the ID
+    };
+    
+    console.log(updatedNote); // Check if the ID is coming through
+    let notes = [];
+    let noteIndex = -1; // Initialize noteIndex to -1
+    try{
+      notes = JSON.parse(fs.readFileSync('notes.json', 'utf-8'));
+      noteIndex = notes.findIndex((n) => n.id === updatedNote.id); // Find the index of the note to update
+    }catch (err) {
+      notes = []; // fallback if file missing or broken
+    }
   
-  // console.log(updatedNote.id); // Check if the ID is coming through
-  let notes = [];
-  let noteIndex = -1; // Initialize noteIndex to -1
-  try{
-    notes = JSON.parse(fs.readFileSync('notes.json', 'utf-8'));
-    noteIndex = notes.findIndex((n) => n.id === updatedNote.id); // Find the index of the note to update
-  }catch (err) {
-    notes = []; // fallback if file missing or broken
-  }
+     // Find and update the note
+     if (noteIndex !== -1) {
+       notes[noteIndex] = updatedNote; // Update the note in the array
+       fs.writeFileSync('notes.json', JSON.stringify(notes, null, 2)); // Save back to the file
+     }
+    // Add your logic to save or update the note
+    res.redirect('/'); // Or render another view
+  }else if(action==='delete'){
+    const noteId = req.body.id; 
+    let notes = [];
+    try {
+      notes = JSON.parse(fs.readFileSync('notes.json', 'utf-8')); 
+    } catch (err) {
+      notes = [];  // Fallback if the file is missing or broken
+    }
 
-   // Find and update the note
-   if (noteIndex !== -1) {
-     notes[noteIndex] = updatedNote; // Update the note in the array
-     fs.writeFileSync('notes.json', JSON.stringify(notes, null, 2)); // Save back to the file
-   }
-  // Add your logic to save or update the note
-  res.redirect('/'); // Or render another view
+    // Filter out the note to delete
+    notes = notes.filter(note => note.id !== noteId);
+
+    // Save the updated notes back to the file
+    fs.writeFileSync('notes.json', JSON.stringify(notes, null, 2));
+
+    // res.sendStatus(200);  // Send a success status
+    res.redirect('/'); // Redirect to the main page
+    };
 });
-
-
-app.post('/deleteNote', (req, res) => {
-  const noteId = req.body.id; 
-  let notes = [];
-
-  try {
-    notes = JSON.parse(fs.readFileSync('notes.json', 'utf-8')); 
-  } catch (err) {
-    notes = [];  // Fallback if the file is missing or broken
-  }
-
-  // Filter out the note to delete
-  notes = notes.filter(note => note.id !== noteId);
-
-  // Save the updated notes back to the file
-  fs.writeFileSync('notes.json', JSON.stringify(notes, null, 2));
-
-  // res.sendStatus(200);  // Send a success status
-  res.redirect('/'); // Redirect to the main page
-});
+  
 
 
 

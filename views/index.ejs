@@ -10,7 +10,8 @@
     <% notes.forEach(note => { %>
       <div class="card note-card" onclick="window.location.href='/clickedCard/<%= note.id %>'">
         <h3><%= note.title %></h3>
-        <!-- <p><%= note.content %></p> -->
+        <p><%= note.content %></p>
+        <p class="card__date"><%= note.date %></p>
       </div>
     <% }) %>
   <% } else { %>

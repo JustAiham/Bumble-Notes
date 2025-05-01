@@ -7,6 +7,25 @@
   {
     "title": "2nd Note",
     "content": "Hey, this is my second note!",
-    "id": "2k8izevj8quwudm2z9lh0irh45xh6anm"
+    "id": "2k8izevj8quwudm2z9lh0irh45xh6anm",
+    "date": ""
+  },
+  {
+    "title": "In Stillness",
+    "content": "In quiet hours the mind takes flight,\r\nBeyond the grasp of day and night.\r\nA thought, a spark, a silent thread—\r\nThe world within speaks loud instead.\r\n\r\nNo need for noise, no race to run,\r\nSome truths emerge when there is none.\r\nSo pause, reflect, let stillness grow—\r\nThe deepest roots are those below.\r\n\r\nThis note was made to test the length of the note.",
+    "id": "xbux01phptshuhtnvc39yqvglnsv9gts",
+    "date": ""
+  },
+  {
+    "title": "Add Dates",
+    "content": "I added a function to save the date of the note's creation.",
+    "date": "May 1, 2025",
+    "id": "xx9kun9daqs2dzakepkggb95unsu3fs4"
+  },
+  {
+    "title": "I love oranges",
+    "content": "I really like oranges",
+    "id": "06thzcj5jcqc0stpwcducd2viyeuyvkj",
+    "date": "May 1, 2025"
   }
 ]

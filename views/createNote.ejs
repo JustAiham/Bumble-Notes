@@ -1,40 +1,40 @@
 <link rel="stylesheet" href="/styles/styles.css">
 <script src="/index.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<div class="background-overlay"></div>
-<% if(locals.note){%>
-  <div class="edit-note-form">
-    <form action="/saveEditedNote" method="POST">
-      <header class="new-note-header">
-        <img src="/images/logos/goBack.png" alt="Back" class="back-button icon" onclick="window.location.href='/'">
-        <!-- Hidden input for the note's ID -->
-        <input type="hidden" name="id" value="<%= locals.note.id %>">
-        
-        <input type="text" id="title" name="title" required placeholder="Note title..." value="<%= locals.note.title %>">
-        
-        <button id="saveEditedNote" type="submit">Save</button>
-      </header>
-    
-      <textarea id="content" name="content" rows="10" required placeholder="Write your note..."><%=locals.note.content%></textarea>
-    </form>
 
-    <!-- Delete button form -->
-    <form id="deleteNoteForm" action="/deleteNote" method="POST" class="delete-note-form">
+<% if(locals.note){ %>
+  <form id="editForm" action="/saveEditedNote" method="POST" class="edit-note-form">
+    <div class="top-bar">
+      <button type="button" onclick="window.location.href='/'">
+        <svg height="30" width="30" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+      </button>  
       <input type="hidden" name="id" value="<%= locals.note.id %>">
-      <button id="deleteNote" type="submit" onclick="window.location.href='/deleteNote'">Delete</button>
-    </form>
-  </div>
-<%} else{%>
-  <form action="/save" method="POST">
-    <header class="new-note-header">
-      <img src="/images/logos/goBack.png" alt="Back" class="back-button icon" onclick="window.location.href='/'">
-      
-      <input type="text" id="title" name="title" required placeholder="Note title...">
-      
-      <button id="save" type="submit">Save</button>
-      <button id="cancel" type="button" onclick="window.location.href='/'">Cancel</button>
-    </header>
-    <textarea id="content" name="content" rows="10" required placeholder="Write your note..."></textarea>
+      <input type="text" name="title" value="<%= locals.note.title %>" required>
+      <input type="hidden" name="date" value="<%= locals.note.date %>">
+  
+      <button type="submit" name="action" value="save">Save</button>
+      <button type="submit" name="action" value="delete">Delete</button>
+    </div>
+  
+    <textarea name="content" spellcheck="false" id="content" rows="10" required placeholder="Write your note..."><%= locals.note.content %></textarea>
   </form>
-<%}%>
 
+  
+
+<% } else { %>
+
+  <form action="/save" method="POST">
+    <div class="top-bar">
+      <button type="button" onclick="window.location.href='/'">
+        <svg height="30" width="30" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
+      </button>
+      <input type="text" id="title" name="title" required placeholder="Note title...">
+
+      <button id="save" type="submit">Save</button>
+      <button id="cancel" type="submit" onclick="window.location.href='/'">Cancel</button>
+    </div>
+
+    <textarea spellcheck="false" id="content" name="content" rows="10" required placeholder="Write your note..."></textarea>
+  </form>
+
+<% } %>
